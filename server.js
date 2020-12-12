@@ -41,7 +41,7 @@ app.get('/lkapi/', async (req, res) => {
       this.where('Player1Visible', 'like', `%${card}%`).orWhere('Player2Visible', 'like', `%${card}%`);
     });
   }
-  let duels;
+  let duels = [];
   const tempUsageCards = {};
   const usage = {
     total: 0,
@@ -51,7 +51,10 @@ app.get('/lkapi/', async (req, res) => {
     duels = await query;
   } catch (err) {
     console.log('== Error in /lkapi/', err);
-    duels = [];
+    return res.json({
+      duels,
+      usage,
+    });
   }
 
   // The following loop will a. Convert visible to JSON && sort b. Calculate the usage
