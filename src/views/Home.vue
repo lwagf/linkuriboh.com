@@ -98,9 +98,7 @@ export default {
       }
       // Cap the GUi to only show 100
       const visible = [...this.usage.cards];
-      if (visible.length > 100) {
-        visible.length = 100;
-      }
+      visible.length = Math.min(visible.length, 100);
       return visible;
     },
     visibleUsageText: function () {
