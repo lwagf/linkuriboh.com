@@ -67,8 +67,6 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable func-names */
 /* eslint-disable no-useless-escape */
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
 const Axios = require('axios');
 const Moment = require('moment');
 
