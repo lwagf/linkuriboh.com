@@ -20,7 +20,7 @@
             <label for="inputCard">Card</label>
             <input v-model.lazy="card" class="form-control" id="inputCard" placeholder="Filter duels with a card like...">
           </div>
-          <div class="container__cards">
+          <div v-if="isArrayNotEmpty(duels)" class="container__cards">
             <div v-for="(item, i) in duels" :key="i" class="card">
               <div class="card-body">
                 <h5 class="card-title">#{{i+1}} {{item.Player1}} vs. {{item.Player2}} ({{item.CombinedRating}} total rating)</h5>
@@ -45,6 +45,9 @@
                 <a target="_blank" :href="getReplayURL(item.id)" class="card-link">View replay</a>
               </div>
             </div>
+          </div>
+          <div v-else class="text-muted">
+            No results found.
           </div>
         </div>
         <div class="col-md-4">
