@@ -9,7 +9,7 @@
         <div class="col-md-8">
           <h3>Showing the 150 highest rated duels</h3>
           <div id="form__home" class="form-group">
-            <label for="inputDate">Date</label>
+            <label for="inputDate">Date (YYYY-MM-DD, UTC)</label>
             <input v-model.lazy="date" class="form-control" id="inputDate" placeholder="YYYY-MM-DD">
             <label for="selectFormat">Format</label>
             <select v-model.lazy="format" class="form-control" id="selectFormat">
@@ -25,16 +25,22 @@
               <div class="card-body">
                 <h5 class="card-title">#{{i+1}} {{item.Player1}} vs. {{item.Player2}} ({{item.CombinedRating}} total rating)</h5>
                 <p class="card-text">{{item.Player1}}</p>
-                <div class="container__deck">
+                <div v-if="isArrayNotEmpty(item.Player1Visible)" class="container__deck">
                   <a v-for="(jtem, j) in item.Player1Visible" :key="j" target="_blank" class="visibleCard" :href="getCardURL(jtem)">
                     <img :alt="jtem" :title="jtem" width="45" height="65" :src="getCardImage(jtem)"/>
                   </a>
                 </div>
+                <div v-else class="container__noDeck text-muted">
+                  No cards were played
+                </div>
                 <p class="card-text">{{item.Player2}}</p>
-                <div class="container__deck">
+                <div v-if="isArrayNotEmpty(item.Player2Visible)" class="container__deck">
                   <a v-for="(jtem, j) in item.Player2Visible" :key="j" target="_blank" class="visibleCard" :href="getCardURL(jtem)">
                     <img :alt="jtem" :title="jtem" width="45" height="65" :src="getCardImage(jtem)"/>
                   </a>
+                </div>
+                <div v-else class="container__noDeck text-muted">
+                  No cards were played
                 </div>
                 <a target="_blank" :href="getReplayURL(item.id)" class="card-link">View replay</a>
               </div>
@@ -141,6 +147,7 @@ export default {
         this.usage = {};
       });
     },
+    isArrayNotEmpty: (Arr) => Arr.length > 0,
   },
   mounted: function () {
     this.makeCall();
