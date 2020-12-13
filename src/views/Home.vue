@@ -117,7 +117,7 @@ export default {
   methods: {
     // This is a bit weird, but some characters the API expects to be encoded, others it expects to be converted to underscores
     getCardImage: (Name) => `https://static-3.studiobebop.net/ygo_data/card_images/${Name.replace(/([\?\&\,\#])/g, (match, capture) => encodeURIComponent(capture)).replace(/[\s\"\*\!\-\:\/]/g, '_')}.jpg`,
-    getCardURL: (Name) => `https://yugiohprices.com/card_price?name=${Name.replace(/([\#])/g, (match, capture) => encodeURIComponent(capture))}`,
+    getCardURL: (Name) => `https://yugiohprices.com/card_price?name=${Name.replace(/([\#\&])/g, (match, capture) => encodeURIComponent(capture))}`,
     getCardUsagePercent: function (Amt) {
       return ((Amt / this.usage.total) * 100).toFixed(2);
     },
