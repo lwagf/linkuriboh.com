@@ -70,7 +70,7 @@
 const Axios = require('axios');
 const Moment = require('moment');
 
-const MomentStart = Moment()
+const MomentStart = Moment
   .utc()
   .startOf('day')
   .subtract(1, 'd');
@@ -116,7 +116,7 @@ export default {
     makeCall: function () {
       this.loading = true;
       // a. Convert the textual date into integer timestamp
-      let timestamp = (Moment(this.date).utc().unix());
+      let timestamp = (Moment.utc(this.date).startOf('day').unix());
       if (Number.isNaN(timestamp)) {
         timestamp = 0;
       }
