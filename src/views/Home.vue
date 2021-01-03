@@ -7,7 +7,7 @@
       </div>
       <div class="row">
         <div class="col-md-8">
-          <h3>Showing the 150 highest rated duels</h3>
+          <h3>Showing {{visibleNumDuelsText}}</h3>
           <div id="form__home" class="form-group">
             <label for="inputDate">Date (YYYY-MM-DD, UTC)</label>
             <input v-model.lazy="date" class="form-control" id="inputDate" placeholder="YYYY-MM-DD">
@@ -110,6 +110,9 @@ export default {
       const visible = [...this.usage.cards];
       visible.length = Math.min(visible.length, 100);
       return visible;
+    },
+    visibleNumDuelsText: function () {
+      return (this.card) ? `${this.duels.length} duels containing a card like "${this.card}"` : 'the 150 highest rated duels';
     },
     visibleUsageText: function () {
       return (this.card) ? `decks containing a card like "${this.card}"` : 'listed decks';
