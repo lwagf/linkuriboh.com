@@ -16,6 +16,7 @@
               <option value="AdvancedMatch">Advanced (Match)</option>
               <option value="AdvancedSingle">Advanced (Single)</option>
               <option value="GoatMatch">Goat (Match)</option>
+              <option value="SpeedMatch">Speed (Match)</option>
             </select>
             <label for="inputCard">Card</label>
             <input v-model.lazy="card" class="form-control" id="inputCard" placeholder="Filter duels with a card like...">
